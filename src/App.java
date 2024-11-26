@@ -32,6 +32,9 @@ public class App {
 
     static int progress;
 
+    static double calculateFuel;
+    static double calculateOxygen;
+
     public static void main(String[] args) throws Exception {
         
         int option;
@@ -203,7 +206,6 @@ public class App {
 
     public static void manageResources(){
         //combustible
-        double calculateFuel;
         switch (optionNave) {
             case 1:
                 calculateFuel = days * fuel[0];
@@ -223,8 +225,11 @@ public class App {
 
         //Oxigeno
 
-        double calculateOxygen = passenger * oxygen * days;
+        calculateOxygen = passenger * oxygen * days;
         System.out.println("El oxigeno necesario para el viaje es: " + calculateOxygen + " kilogramos");
+
+        //Ajustar recursos de la nave
+        adjustResources();
     }
 
     public static void events(){
@@ -387,5 +392,40 @@ public class App {
         for (double i = days ; days > 1; days-=time){
             System.out.println(days);
         }
+    }
+
+    public static void adjustResources (){
+        var exit = true;
+        
+        System.out.println("¿Deseas ajustar los recursos?");
+        System.out.println("1. Si \n2. No ");
+        var option = scanner.nextInt();
+
+        
+        if(option == 1){
+            while (exit) {
+                System.out.println("¿Que deseas hacer?");
+                System.out.println("1. Aumentar combustible");
+                System.out.println("2. Aumentar oxigeno");
+                System.out.println("3. Salir");
+                var opt = scanner.nextInt();
+                    if(opt == 1){
+                        System.out.println("Ingresa cuanto quieres agregar de combustible: ");
+                        var fuel = scanner.nextInt();
+                        var finalFuel = fuel + calculateFuel;
+                        System.out.println("El combustible final con el ajuste es: " + finalFuel);
+                    }else if(opt == 2){
+                        System.out.println("Ingresa cuanto quieres agregar de oxigeno: ");
+                        var oxygen = scanner.nextInt();
+                        var finalOxygen = oxygen + calculateOxygen;
+                        System.out.println("El oxigeno final con el ajuste es: " + finalOxygen);
+                    }else if (opt == 3){
+                        System.out.println("Continuando...");
+                        exit = false;
+                    }
+                } 
+            } else{
+                System.out.println("Ok continuado...");
+            }
     }
 }
