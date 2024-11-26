@@ -257,7 +257,7 @@ public class App {
                     break;
                 case 2:
                     System.out.println("Calculando nueva ruta...");
-                    System.out.println("Ruta deifinida, continuando viaje...");
+                    System.out.println("Ruta de finida, continuando viaje...");
                     break;
                 case 3:
                     System.out.println("Reparando la nave...");
