@@ -20,7 +20,7 @@ public class App {
     static double[] fuel = {250000.0, 450000.0,300000.0}; //autonomia kilogramos por día
     static double oxygen = 9.0; //kilogramos dia por persona
 
-    static String[] event = {"Fallo en el sistema! reparando..", "Asteroides en el camino! cambiando rumbo...", "Perdida de oxigeno! ajustando niveles..."};
+    static String[] event = {"Fallo en el sistema!", "Asteroides en el camino!", "Perdida de oxigeno!"};
 
     //Variables para calcular el tiempo de viaje
     static double speed;
@@ -171,7 +171,7 @@ public class App {
 
     public static void travelSimulation(){
 
-        var rand = random.nextInt(99);
+        var rand = random.nextInt(80);
         progress = 0;
         System.out.println("Iniciando viaje en: ");
             for(int i = 3; i > 0; i--){
@@ -180,8 +180,31 @@ public class App {
         System.out.println("Despegando...");
         System.out.println();
         
-        events(rand);
         for(progress = 0; progress <= 100; progress++){
+
+            if(progress == rand){
+                events();
+                System.out.println("¿Que deseas hacer?");
+                System.out.println("1. continuar");
+                System.out.println("2. desviar");
+                System.out.println("3. Reparar");
+                var decision = scanner.nextInt();
+
+                switch (decision) {
+                    case 1:
+                        System.out.println("Continuando...");
+                        break;
+                    case 2:
+                        System.out.println("Calculando nueva ruta...");
+                        System.out.println("Ruta deifinida, continuando viaje...");
+                        break;
+                    case 3:
+                        System.out.println("Reparando la nave...");
+                        System.out.println("Falla ajustada con exito! \nContinuando...");
+                    default:
+                        break;
+                }
+            }
             
             if(progress == 0){
                 System.out.println("Inicio del viaje...");
@@ -189,6 +212,8 @@ public class App {
                 System.out.println("Vamos a la mitad del camino...");
             }else if(progress < 100 && progress != 50){
                 System.out.println("Llevas un " + progress + "% del viaje");
+            }else if(rand == progress){
+                events();
             }else if(progress == 100){
                 System.out.println("Llegada al destino, el viaje se completó correctamente!");
             }
@@ -221,7 +246,7 @@ public class App {
         System.out.println("El oxigeno necesario para el viaje es: " + calculateOxygen + " kilogramos");
     }
 
-    public static void events(int aleatorio){
+    public static void events(){
     
         int randomEvent = random.nextInt(1,3);
         switch (randomEvent) {
@@ -236,10 +261,6 @@ public class App {
                 break;    
             default:
                 break;
-        }
-
-        if(progress == aleatorio){
-            System.out.println(randomEvent);
         }
     }
 
