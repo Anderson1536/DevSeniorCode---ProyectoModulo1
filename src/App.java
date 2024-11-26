@@ -49,7 +49,6 @@ public class App {
                     break;
                 case 3:
                     travelSimulation();
-                    timeRest(days);
                     break;
                 case 4:
                     System.out.println("Saliendo...");
