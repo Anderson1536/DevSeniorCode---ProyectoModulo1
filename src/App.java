@@ -49,6 +49,7 @@ public class App {
                     break;
                 case 3:
                     travelSimulation();
+                    timeRest(days);
                     break;
                 case 4:
                     System.out.println("Saliendo...");
@@ -173,6 +174,7 @@ public class App {
 
         var rand = random.nextInt(80);
         progress = 0;
+
         System.out.println("Iniciando viaje en: ");
             for(int i = 3; i > 0; i--){
                 System.out.println(i);
@@ -181,29 +183,9 @@ public class App {
         System.out.println();
         
         for(progress = 0; progress <= 100; progress++){
-
+            
             if(progress == rand){
                 events();
-                System.out.println("¿Que deseas hacer?");
-                System.out.println("1. continuar");
-                System.out.println("2. desviar");
-                System.out.println("3. Reparar");
-                var decision = scanner.nextInt();
-
-                switch (decision) {
-                    case 1:
-                        System.out.println("Continuando...");
-                        break;
-                    case 2:
-                        System.out.println("Calculando nueva ruta...");
-                        System.out.println("Ruta deifinida, continuando viaje...");
-                        break;
-                    case 3:
-                        System.out.println("Reparando la nave...");
-                        System.out.println("Falla ajustada con exito! \nContinuando...");
-                    default:
-                        break;
-                }
             }
             
             if(progress == 0){
@@ -262,6 +244,28 @@ public class App {
             default:
                 break;
         }
+
+        System.out.println("¿Que deseas hacer?");
+        System.out.println("1. continuar");
+        System.out.println("2. desviar");
+        System.out.println("3. Reparar");
+        var decision = scanner.nextInt();
+
+            switch (decision) {
+                case 1:
+                    System.out.println("Continuando...");
+                    break;
+                case 2:
+                    System.out.println("Calculando nueva ruta...");
+                    System.out.println("Ruta deifinida, continuando viaje...");
+                    break;
+                case 3:
+                    System.out.println("Reparando la nave...");
+                    System.out.println("Falla ajustada con exito! \nContinuando...");
+                    break;
+                default:
+                    break;
+            }
     }
 
     public static void naveState(){
@@ -377,5 +381,12 @@ public class App {
             default:
                 break;
         }        
+    }
+
+    public static void timeRest(double days){
+        double time = days/100;
+        for (double i = days ; days > 1; days-=time){
+            System.out.println(days);
+        }
     }
 }
