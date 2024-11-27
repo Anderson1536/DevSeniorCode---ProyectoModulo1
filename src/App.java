@@ -15,7 +15,7 @@ public class App {
                                     "Es un planeta gaseoso del sistema solar que se caracteriza por sus anillos, su color y su rápido giro"};
     
     static String[] naves = {"Exploradora", "Carga pesada", "Gran velocidad"};
-    static double[] maxSpeed ={20000.0,15000.0,30000.0};
+    static double[] maxSpeed ={20000.0,15000.0,30000.0}; 
     static int[] passengers = {4, 7, 2};
     static double[] fuel = {250.0, 450.0,300.0}; //autonomia miles de kilogramos por día
     static double oxygen = 9.0; //kilogramos dia por persona
@@ -40,7 +40,8 @@ public class App {
         int option;
 
         do {
-            showMenu();
+            showMenu(); //Mostra menú principal
+
             option = scanner.nextInt();
 
             switch (option) {
@@ -76,36 +77,42 @@ public class App {
 
     public static void selectPlanet(){
 
-        showArray(planets);
-        int optionUser = enterOption();
+        showArray(planets); //Mostrar contenido del array planets
+
+        int optionUser = enterOption(); //Ingresar una opción
 
         switch (optionUser) {
             case 1:
                 System.out.println("El destino seleccionado es: " + planets[0]);
-                route = planetDistance(optionUser);
+
+                route = planetDistance(optionUser); //Mostrar la distancia del planeta seleccionado
                 System.out.println("Distancia de la tierra: " + route + " millones de kilometros");
-                planetDescription(optionUser);            
+                planetDescription(optionUser);   
                 break;
             case 2:
                 System.out.println("El destino seleccionado es: "+ planets[1]);
+
                 route = planetDistance(optionUser);
                 System.out.println("Distancia de la tierra: " + route + " millones de kilometros");
-                planetDescription(optionUser);
+                planetDescription(optionUser); //Mostrar la descripción del planeta seleccionado  
                 break;
             case 3:
                 System.out.println("El destino seleccionado es: "+ planets[2]);
+
                 route = planetDistance(optionUser);
                 System.out.println("Distancia de la tierra: " + route + " millones de kilometros");
                 planetDescription(optionUser);
                 break;
             case 4:
-            System.out.println("El destino seleccionado es: "+ planets[3]);
+                System.out.println("El destino seleccionado es: "+ planets[3]);
+
                 route = planetDistance(optionUser);
                 System.out.println("Distancia de la tierra: " + route + " millones de kilometros");
                 planetDescription(optionUser);
                 break;
             case 5:
                 System.out.println("El destino seleccionado es: "+ planets[4]);
+
                 route = planetDistance(optionUser);
                 System.out.println("Distancia de la tierra: " + route + " millones de kilometros");
                 planetDescription(optionUser);
@@ -118,15 +125,17 @@ public class App {
 
     public static void selectNave(){
 
-        showArray(naves);
-        optionNave = enterOption();
+        showArray(naves); //Mostrar contenido del array naves
+        optionNave = enterOption(); //Ingresar una opción
 
         switch (optionNave){
             case 1:
                 System.out.println("Nave seleccionada: " + naves[0]);
-                speed = naveSpeed(optionNave);
+
+                speed = naveSpeed(optionNave); //Mostrar la velocidad de la nave seleccionada
                 System.out.println("La velocidad es: " + speed + " k/h");
-                passengerCapacity(optionNave);
+
+                passengerCapacity(optionNave); //Mostrar la capacidad de pasajeros de la nave seleccionada
                 break;
             case 2:
                 System.out.println("Nave seleccionada: "+ naves[1]);
@@ -146,14 +155,16 @@ public class App {
         }
 
         System.out.println();
-        calculateTime(speed, route);
-        amountpassengers();
+
+        calculateTime(speed, route); //Calcular los días estimados del viaje a partir de la distancia y la velocidad
+        amountpassengers(); //Solicitar la cantidad de pasajeros que viajarán
         manageResources();
         System.out.println("----------------------------------");
     }
 
     public static void amountpassengers(){
         
+        //Solicitar la cantidad de pasajeros que viajarán y verificar si el valor el negativo o positivo
         boolean amount = true;
         while (amount) {
             System.out.println("Ingrese la cantidad de pasajeros que viajaran: ");
@@ -166,7 +177,7 @@ public class App {
         }
     }
 
-    public static void calculateTime(double velocidad, double distancia){
+    public static void calculateTime(double velocidad, double distancia){ //Caldular el tiempo del viaje en días
         double time = distancia * 1000000 / velocidad;
         days = time / 24;
         System.out.println("La duración estimada del viaje es de " + days + " días.");
@@ -174,10 +185,10 @@ public class App {
 
     public static void travelSimulation(){
 
-        var rand = random.nextInt(80);
+        var rand = random.nextInt(80); //Numero aleatorio que se compara con el progreso para soltar el evento
         progress = 0;
 
-        System.out.println("Iniciando viaje en: ");
+        System.out.println("Iniciando viaje en: "); //Cuenta regresiva
             for(int i = 3; i > 0; i--){
                 System.out.println(i);
             }
@@ -187,9 +198,10 @@ public class App {
         for(progress = 0; progress <= 100; progress++){
             
             if(progress == rand){
-                events();
+                events(); //Mostrar evento aleatorio
             }
             
+            //Progreso del viaje
             if(progress == 0){
                 System.out.println("Inicio del viaje...");
             }else if(progress == 50){
@@ -205,7 +217,7 @@ public class App {
     }
 
     public static void manageResources(){
-        //combustible
+        // Calcular combustible
         switch (optionNave) {
             case 1:
                 calculateFuel = days * fuel[0];
@@ -223,7 +235,7 @@ public class App {
                 break;
         }
 
-        //Oxigeno
+        //Calcular Oxigeno
 
         calculateOxygen = passenger * oxygen * days;
         System.out.println("El oxigeno necesario para el viaje es: " + calculateOxygen + " kilogramos");
@@ -233,7 +245,8 @@ public class App {
     }
 
     public static void events(){
-    
+        
+        //Mostrar evento aleatorio
         int randomEvent = random.nextInt(1,3);
         switch (randomEvent) {
             case 1:
@@ -249,6 +262,7 @@ public class App {
                 break;
         }
 
+        //Decisiones sobre el evento generado
         System.out.println("¿Que deseas hacer?");
         System.out.println("1. continuar");
         System.out.println("2. desviar");
@@ -275,18 +289,17 @@ public class App {
 
     //Metodos auxiliares
 
-    public static int enterOption(){
+    public static int enterOption(){ //Ingresar una opción
         System.out.println("Por favor seleccione una opción: ");
         int optionUser = scanner.nextInt();
         System.out.println("----------------------------------");
         return optionUser;
     }
 
-    public static double planetDistance(int opcion){
+    public static double planetDistance(int opcion){ //Mostrar la distancia del planeta seleccionado
         double range = 0;
         switch (opcion) {
             case 1:
-                //System.out.println("Distancia de la tierra: " + distance[0] + " millones de kilometros");
                 range = distance[0];
                 break;
             case 2:
@@ -308,7 +321,7 @@ public class App {
         return range;
     }
 
-    public static void showArray(String[]aux){
+    public static void showArray(String[]aux){ //Mostrar contenido de un array
         int option = 1;
         System.out.println("Listado: ");
 
@@ -317,7 +330,7 @@ public class App {
         }
     }
 
-    public static double naveSpeed(int option){
+    public static double naveSpeed(int option){ //Mostrar la velocidad de la nave seleccionada
 
         double velocity = 0;
         switch (option) {
@@ -337,7 +350,7 @@ public class App {
         return velocity;
     }
 
-    public static void planetDescription(int option){
+    public static void planetDescription(int option){ //Mostrar la descripción del planeta seleccionado
         switch (option) {
             case 1:
                 System.out.println(description[0]);
@@ -364,7 +377,7 @@ public class App {
         }
     }
 
-    public static void passengerCapacity(int option){
+    public static void passengerCapacity(int option){ //Mostrar la capacidad de pasajeros de la nave seleccionada
         switch (option) {
             case 1:
                 System.out.println("Capacidad maxima de pasajeros: " + passengers[0]);
@@ -384,6 +397,8 @@ public class App {
     }
 
     public static void adjustResources (){
+
+        //Ajustar recursos de la nave
         var exit = true;
         
         System.out.println("¿Deseas ajustar los recursos?");
