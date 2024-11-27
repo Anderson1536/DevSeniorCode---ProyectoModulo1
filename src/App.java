@@ -17,12 +17,12 @@ public class App {
     static String[] naves = {"Exploradora", "Carga pesada", "Gran velocidad"};
     static double[] maxSpeed ={20000.0,15000.0,30000.0};
     static int[] passengers = {4, 7, 2};
-    static double[] fuel = {250000.0, 450000.0,300000.0}; //autonomia kilogramos por día
+    static double[] fuel = {250.0, 450.0,300.0}; //autonomia miles de kilogramos por día
     static double oxygen = 9.0; //kilogramos dia por persona
 
     static String[] event = {"Fallo en el sistema!", "Asteroides en el camino!", "Perdida de oxigeno!"};
 
-    //Variables para calcular el tiempo de viaje
+    //Variables para realizar operaciones entre metodos
     static double speed;
     static double route;
 
@@ -183,7 +183,7 @@ public class App {
             }
         System.out.println("Despegando...");
         System.out.println();
-        
+
         for(progress = 0; progress <= 100; progress++){
             
             if(progress == rand){
@@ -270,10 +270,6 @@ public class App {
                 default:
                     break;
             }
-    }
-
-    public static void naveState(){
-
     }
 
 
@@ -387,13 +383,6 @@ public class App {
         }        
     }
 
-    public static void timeRest(double days){
-        double time = days/100;
-        for (double i = days ; days > 1; days-=time){
-            System.out.println(days);
-        }
-    }
-
     public static void adjustResources (){
         var exit = true;
         
@@ -428,4 +417,5 @@ public class App {
                 System.out.println("Ok continuado...");
             }
     }
+
 }
